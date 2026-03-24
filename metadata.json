@@ -1,0 +1,5 @@
+{
+  "name": "Image to Doc/Excel Converter",
+  "description": "Convert images containing text or tables into Word documents or Excel spreadsheets using AI.",
+  "requestFramePermissions": []
+}
