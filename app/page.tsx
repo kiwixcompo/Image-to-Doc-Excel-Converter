@@ -82,11 +82,17 @@ export default function Home() {
 
       for (let i = 0; i < files.length; i++) {
         setConvertingIndex(i + 1);
+        
+        // Add a delay between requests for batch processing to respect free tier rate limits (15 RPM for Flash)
+        if (i > 0) {
+          await new Promise(resolve => setTimeout(resolve, 4000));
+        }
+
         const fileObj = files[i].file;
         const base64Data = await fileToBase64(fileObj);
 
         const response = await ai.models.generateContent({
-          model: 'gemini-3.1-pro-preview',
+          model: 'gemini-3-flash-preview',
           contents: [
             {
               inlineData: {
